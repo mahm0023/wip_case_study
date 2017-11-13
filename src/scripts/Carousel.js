@@ -41,6 +41,7 @@ class Carousel extends React.Component {
 
 	componentDidMount() {
 		//primary image - should be set from jsonData because we may want to change what it is
+		// TODO: this should also rely on App state value for catalog entry - with redux we'd have access to state
 		this.setState({imageSelected: jsonData.CatalogEntryView[0].Images[0].PrimaryImage[0].image});
 	}
 

@@ -10,23 +10,30 @@ import Title from './Title'
 import Price from './Price'
 
 class App extends React.Component {
+	// TODO: reorganize the app structure -> instead of this single page loading from the App component, 
+	// have Page container, routing, navigation etc.
+
+	// TODO: Add Redux for state handling -> for example for catalogEntry data
+
+	// TODO: add ESLint to standardize style of code
+
 	constructor(props, context) {
         super(props, context);
         this.state = {catalogEntry: {}, items: [], showAddToCart: false, showPickupInStore: false}
     }
 
     componentDidMount() {
-    	const catalogEntry = {};//jsonData.CatalogEntryView[0];
-
+    	// TODO: extract references to catalog entry into state, so we don't have to directly reference JSON file each time
+    	const catalogEntry = jsonData.CatalogEntryView[0];
     	this.setState({catalogEntry: catalogEntry});
 
-        const images = jsonData.CatalogEntryView[0].Images[0];
+        const images = catalogEntry.Images[0];
         const primary = images.PrimaryImage[0];
         const alternate = images.AlternateImages;
         let items = [primary].concat(alternate);
         this.setState({items});
 
-		const purchasingChannelCode = jsonData.CatalogEntryView[0].purchasingChannelCode;
+		const purchasingChannelCode = catalogEntry.purchasingChannelCode;
         if (purchasingChannelCode === "0" || purchasingChannelCode === "1") {
         	this.setState({showAddToCart: true});
 		}
@@ -37,6 +44,7 @@ class App extends React.Component {
 
 	render() {
 
+		// TODO: if catalog entry is missing or corrupt, create new error component and render a message instead of the app
 		const addToCart = this.state.showAddToCart ? (
 			<span><Button buttonStyle={`add-to-cart`}  buttonName={'Add to cart'}></Button></span>) : null;
 		
@@ -46,7 +54,7 @@ class App extends React.Component {
 		return(
 			<div className="content">
 				<div className="main-container">
-					<Title titleStyle={'product-title'} titleText={jsonData.CatalogEntryView[0].title} />
+					<Title titleStyle={'product-title'} titleText={this.state.catalogEntry.title} />
 					<Carousel {...this.state} />
 					<div className="review-container">
 						<div className={'rating'}>

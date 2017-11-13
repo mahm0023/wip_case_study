@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Promotions = (props) => {
+	// TODO: link is just for demo
 	return (
 		<div>
 			{props.promos.map(promo => 
