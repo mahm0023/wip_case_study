@@ -1,0 +1,9 @@
+Deploying to a live environment
+==========================================
+
+Stages:
+1) Devloper work and unit tests
+1) Code review
+2) Integration tests
+3) Submitting code to QA for automated/manual testing
+4) Production
