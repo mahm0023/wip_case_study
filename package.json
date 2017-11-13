@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js -p",
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline",
+    "test": "babel-node src/spec/run.js"
   },
   "author": "",
   "license": "MIT",
@@ -25,5 +26,9 @@
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "jasmine": "^2.8.0"
   }
 }
